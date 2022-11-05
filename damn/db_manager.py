@@ -1,6 +1,7 @@
 import psycopg2
 from config import config
 
+
 def run_query(query, record=None):
     """ Connect to the PostgreSQL database server """
     try:
@@ -20,4 +21,3 @@ def run_query(query, record=None):
             cursor.close()
             connection.close()
             print("PostgreSQL connection is closed")
-
