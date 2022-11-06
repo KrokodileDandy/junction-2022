@@ -1,38 +1,20 @@
 
 # Delivering Attractive Maps Now! ... DAMN!
 
+## Usage
+
+Navigate into the `damn/` folder and execute `python main.py`.
+
 ## Setup
 
-Download the [imposm](https://imposm.org/docs/imposm3/latest/install.html) tool and some Open Streat Map file (.pbf), e.g., of [Helsinki](https://www.hsl.fi/en/hsl/open-data#open-street-map).
+### Database
+
+Go to [Google Cloud](https://console.cloud.google.com/) and create a new PostgreSQL 13 instance. In this example the database has the IP address `34.88.101.46` and the database name is `damn-junction-2022`. Go to SQL > Users and reset the password of the user `postgresql` to a password you know. Then go to SQL > Connections and add the IP address of your machine to the list of authorized networks in order to allow for the database connections to work.
+
+### Populate the Database
+
+Install the tool `osm2pgsql` by running `sudo apt intall osm2pgsql`. Then run the following command to import the map data into the cloud postgresql database. Adapt the command to your needs. The example below uses map data from [Helsinki](https://www.hsl.fi/en/hsl/open-data#open-street-map) in the `Helsinki.osm.pbf` file, and the default style file of the `osm2pgsql` tool `default.style` is used. The database credentials are the same as above.
 
 ```bash
-sudo wget -c https://github.com/omniscale/imposm3/releases/download/v0.11.1/imposm-0.11.1-linux-x86-64.tar.gz
-```
-
-Unpack the imposm tool by executing `sudo tar -xf imposm-0.11.1-linux-x86-64.tar.gz`. Then execute the following to populate the database:
-
-```bash
-# Read the PBF data and write to cache /tmp/imposm/
-./imposm-0.11.1-linux-x86-64/imposm import -mapping mapping.yml -read Helsinki.osm.pbf -overwritecache
-# Read the cache and write into the database
-sudo ./imposm-0.11.1-linux-x86-64/imposm import -mapping mapping.yml -write -connection postgis://postgres:password@localhost:5555/damn-postgresql
-
-./imposm-0.11.1-linux-x86-64/imposm import -mapping mapping.yml -read Helsinki.osm.pbf -overwritecache -write -connection postgis://alex:password@localhost:5432/gis
-```
-
-```bash
-# Install docker
-# Create container "alex"
-sudo docker -it <name> bash
-su postgres
-psql # Login
-$ \l # List databases
-use gis # Switch to db
-show tables
-```
-
----
-
-```bash
-osm2pgsql -c -d damn-junction-2022 -U postgres -H junction-hack22esp-7060:europe-north1:damn-junction-2022 -S default.style Helsinki.osm.pbf
+osm2pgsql -c -d damn-junction-2022 -U postgres -W -H 34.88.101.46 -S default.style Helsinki.osm.pbf
 ```
