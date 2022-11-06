@@ -9,7 +9,7 @@ Navigate into the `damn/` folder and execute `python main.py`. This will start a
 
 A dynamic visualization is planned for a later stage of the project, but below is an image of what we envsion it might could look like. The figure visualizes the usage frequency of streets (with mockup data).
 
-![The road network of Helsinki with different colors depending on the usage frequency, based on mockup data.](https://github.com/KrokodileDandy/junction-2022/blob/main/doc/visualization-example.png)
+![The road network of Helsinki with different colors depending on the usage frequency, based on mockup data.](https://github.com/KrokodileDandy/junction-2022/blob/main/doc/images/visualization-example.png)
 
 ## Setup
 
