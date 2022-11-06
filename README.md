@@ -1,6 +1,10 @@
 
 # Delivering Attractive Maps Now! ... DAMN!
 
+## Usage
+
+Navigate into the `damn/` folder and execute `python main.py`.
+
 ## Setup
 
 Download the [imposm](https://imposm.org/docs/imposm3/latest/install.html) tool and some Open Streat Map file (.pbf), e.g., of [Helsinki](https://www.hsl.fi/en/hsl/open-data#open-street-map).
