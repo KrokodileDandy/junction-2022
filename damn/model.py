@@ -23,16 +23,39 @@ class Line:
         print(point_list.coords[:])
 
 class DeliveryTrip:
-    """An entity representing a delivery trip done by a Wolt partner."""
+    """
+    An entity representing a delivery trip done by a Wolt partner.
+    
+    Parameters
+    ----------
+    path: list()
+        A list of Line objects, representing the path of the delivery.
+    shortest_path: list()
+        A list of Line objects, representing the shortest path between the
+        start and end coordinate of the delivery.
+    """
     id = None
     vehicle_type = None
-    parsed_coordinates = None
-    shortest_path = None
+    path: list() = None
+    shortest_path: list() = None
 
-    def __init__(self, id, vehicle_type, parsed_coordinates) -> None:
+    def __init__(self, id, vehicle_type, path) -> None:
         self.id = id
         self.vehicle_type = vehicle_type
-        self.parsed_coordinates = parsed_coordinates
+        self.path = path
+
+class Incident:
+    """A near-miss incident during a DeliveryTrip."""
+    id = None
+    vehicle_type = None
+    location = None
+    description = None
+
+    def __init__(self, id, vehicle_type, location, description):
+        self.id = id
+        self.vehicle_type = vehicle_type
+        self.location = location
+        self.description = description
 
 ##############################################################################
 ### MISC.
